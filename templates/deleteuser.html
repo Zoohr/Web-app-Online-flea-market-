@@ -1,0 +1,12 @@
+{% extends 'baseadmin.html' %}
+
+{% block content %}
+<div style="text-align:center">
+<h2>Вы дейсвительно хотите удалить пользователя?</h2>
+    <form method="post">
+        <a <button type="button" href="/admin" class="btn btn-light text-dark me-2">Нет</button></a>
+        <input class="btn btn-warning" type="submit" name="yes" class="btn btn-success" value="Да"/>
+        </form>
+</div>
+
+{% endblock %}

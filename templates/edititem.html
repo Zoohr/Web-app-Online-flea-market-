@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super()}}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h1>Редактирование профиля</h1>
+          <form method="post">
+              <label>Название объявления: </label><input type='text' name="product_name" id="product_name" class="form-control" value="{{item_info[0].product_name}}"><br>
+              <label>Описание: </label><input type='text' name="description" id="description" class="form-control" value="{{item_info[0].description}}"><br>
+              <label>Стоимость товара: </label><input type='text' name="cost" id="cost" class="form-control" value="{{item_info[0].cost}}"><br>
+               {% if message %}
+                  <div class="alert alert-success">{{message}}</div>
+             {% endif %}
+            <br><input type="submit" class="btn btn-warning" value="Сохранить"><br>
+
+            </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super()}}
+<div class="album py-5 bg-light">
+    <div class="container">
+      <ul class="list-posts">
+        {% for i in show_category %}
+        <li>
+          <p class="title"><a href="{{ url_for('showItem', id_item=i.id_product)}}">{{i.product_name}}</a></p>
+              <p class="annonce"> Описание: {{ i.description[:50]}}</p>
+              <p class="cost"> Стоимость: {{ i.cost}}₽</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+</div>
+{% endblock %}

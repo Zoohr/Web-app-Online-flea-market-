@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div>
+            <table>
+                <tr>
+                    <td>Имя:&nbsp</td>
+                    <td>{{ account['name'] }}</td>
+                </tr>
+                <tr>
+                    <td>Почта: </td>
+                    <td>{{ account['e_mail'] }}</td>
+                </tr>
+                <tr>
+                    <td>Телефон: </td>
+                    <td>{{ account['telephone'] }}</td>
+                </tr>
+                {% if user_city %}
+                <tr>
+                    <td>Город: </td>
+                    <td>{{ user_city[0].city_name }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td>Рейтинг: </td>
+                    <td>{{rating}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h3>Объявления пользователя</h3>
+        <ul class="list-posts">
+          {% for i in adsitems %}
+          <li>
+            <p class="title"><a href="{{ url_for('showItem', id_item=i.id_product)}}">{{i.product_name}}</a></p>
+              <p class="annonce"> Описание: {{ i.description[:50]}}</p>
+              <p class="cost"> Стоимость: {{ i.cost}}₽</p>
+          </li>
+          {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block reviews %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h3>Отзывы о продавце</h3>
+        {% for i in profile_id_user %}
+        {% if id_usersee!=id_profile %}
+            <p class="title"><a href="{{ url_for('leaveReview', id_profiluser=i.id_user)}}">Оставить отзыв</a></p>
+        {% endif %}
+          {% endfor %}
+            <ul class="list-posts">
+            {% for i in estimation_info %}
+              <li>
+                    {% for i in estimation_info_user %}
+                    <p class="title"><a href="{{ url_for('showProfile', id_profile=i.id_user)}}">{{i.name}}</a></p>
+                    {% endfor %}
+                    <p class="title"> Оценка: {{i.mark}}</p>
+                        <p class="annonce"> Комментарий: {{i.text}}</p>
+                        <p class="cost"> Дата: {{i.date}}</p>
+              </li>
+            {% endfor %}
+            <ul
+    </div>
+</div>
+
+{% endblock %}

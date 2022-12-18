@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super()}}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h1>Редактирование профиля</h1>
+          <form method="post">
+              <label>Имя: </label><input type='text' name="name" id="name" class="form-control" value="{{profile_info[0].name}}"><br>
+              <label>Email: </label><input type='text' name="e_mail" id="e_mail" class="form-control" value="{{profile_info[0].e_mail}}"><br>
+              <label>Телефон: </label><input type='text' name="telephone" id="telephone" class="form-control" value="{{profile_info[0].telephone}}"><br>
+              Город: <SELECT name="city">
+                            {% for c in list_city %}
+	                        <OPTION value={{c.id_city}}>{{c.city_name}} </option>
+                            {% endfor %}
+                        </SELECT>
+               {% if message %}
+                  <div class="alert alert-success">{{message}}</div>
+             {% endif %}
+            <br><input type="submit" class="btn btn-warning" value="Сохранить"><br>
+
+            </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Отзыв
+{% endblock %}
+
+{% block body %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row"><h2> Отзыв </h2></div>
+            <div class="row">
+                <div class="col-md-4">
+
+                </div>
+            </div>
+                    <form method="post" class="form-contact">
+
+                      <div class="seldiv">
+                        <label>Оценка: </label><select name="mark" id="mark">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                        <p><label>Комментарий: </label>
+                        <p><textarea name="text" rows=7 cols=45 value=""></textarea>
+                        <p><input type="submit" value="Опубликовать" />
+                    </form>
+    </div>
+</div>
+
+{% endblock %}

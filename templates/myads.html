@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Мои объявления</h1>
+{{ super()}}
+{{ my_ads }}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <ul class="list-posts">
+          {% for i in adsitems %}
+          <li>
+            <p class="title"><a href="{{ url_for('showItem', id_item=i.id_product)}}">{{i.product_name}}</a></p>
+              <p class="annonce"> Описание: {{ i.description[:50]}}</p>
+              <p class="cost"> Стоимость (руб.): {{ i.cost}}</p>
+          </li>
+          {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

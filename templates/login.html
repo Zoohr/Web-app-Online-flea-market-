@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        {{ super() }}
+        {% for cat, msg in get_flashed_messages (True) %}
+        <div class="flash {{cat}}">{{msg}}</div>
+        {% endfor %}
+
+        <form action="" method="post" class="form-contact">
+          <p><label>Логин: </label>
+            <input type="text" name="user_login" id="user_login" value="" requied />
+          <p><label>Пароль: </label>
+          <input type="password" name="password" id="password" value="" requied />
+          <p><input type="submit" value="Войти" />
+          <hr align=left width="300px">
+          <p><a href="{{url_for('register')}}"> Регистрация</a>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+
+{% block body %}
+{{ super()}}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-auto">
+          {% for c in categorys %}
+          <li>
+            <p class="nav-link px-2 link-secondary"><a href="{{ url_for('showCategory',id_categ=c.id_category)}}">{{c.category_name}}</a></p>
+          </li>
+          {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+{{ super()}}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <ul class="list-posts">
+          {% for i in item %}
+          <li>
+            <p class="title"><a href="{{ url_for('showItem', id_item=i.id_product)}}">{{i.product_name}}</a></p>
+              <p class="annonce"> Описание: {{ i.description[:50]}}</p>
+              <p class="cost"> Стоимость: {{ i.cost}}₽</p>
+          </li>
+          {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

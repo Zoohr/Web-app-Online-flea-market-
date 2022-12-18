@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{{ super() }}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <ul class="list-posts">
+          {% for i in show_item %}
+           <h2><p class="title">{{i.product_name}} {{ i.cost}}₽</p></h2>
+            <h2> Описание </h2>
+            <p class="annonce">{{ i.description}}</p>
+          {% endfor %}
+            {% if session['id_user'] %}
+            {% for i in show_profile %}
+                    <p class="title"><a href="{{ url_for('showProfile', id_profile=i.id_user)}}"><h3>Профиль продавца</h3></a></p>
+                    {% endfor %}
+            {% endif %}
+            <table>
+                <tr>
+                    <td>Имя:&nbsp</td>
+                    <td>{{ show_profile[0].name }}</td>
+                </tr>
+                {% if session['id_user'] %}
+                <tr>
+                    <td>Телефон: </td>
+                    <td>{{ show_profile[0].telephone}}</td>
+                </tr>
+                {% endif %}
+                {% if user_city %}
+                <tr>
+                    <td>Город: </td>
+                    <td>{{ user_city[0].city_name }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td>Рейтинг: </td>
+                    <td>{{rating}}</td>
+                </tr>
+            </table>
+        </ul>
+    </div>
+</div>
+{% endblock %}

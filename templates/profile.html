@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+  
+{% block body %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h1>Профиль</h1>
+        <div>
+            <table>
+                <tr>
+                    <td>Имя:&nbsp</td>
+                    <td>{{ account['name'] }}</td>
+                </tr>
+                <tr>
+                    <td>Почта: </td>
+                    <td>{{ account['e_mail'] }}</td>
+                </tr>
+                <tr>
+                    <td>Телефон: </td>
+                    <td>{{ account['telephone'] }}</td>
+                </tr>
+                {% if user_city %}
+                <tr>
+                    <td>Город: </td>
+                    <td>{{ user_city[0].city_name }}</td>
+                </tr>
+                <tr>
+                    <td>Рейтинг: </td>
+                    <td>{{rating}}</td>
+                </tr>
+                {% endif %}
+
+                <p><a href="{{url_for('logout')}}"> Выход</a>
+
+            </table>
+            {% if account %}
+            <p><a href="{{ url_for('editProfile', id_editprof=session['id_user']) }}">Редактирование профиля</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h1>Мои объявления</h1>
+        <ul class="list-posts">
+          {% for i in adsitems %}
+          <li>
+            <p class="title"><a href="{{ url_for('showItem', id_item=i.id_product)}}">{{i.product_name}}</a></p>
+              <p class="annonce"> Описание: {{ i.description[:50]}}</p>
+              <p class="cost"> Стоимость: {{ i.cost}}₽</p>
+              <p><a href="{{ url_for('editItem', id_edititem=i.id_product )}}">Редактировать</a></p>
+              <p><a href="{{ url_for('deleteItem', id_deleteitem=i.id_product )}}">Удалить объявление</a></p>
+          </li>
+          {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

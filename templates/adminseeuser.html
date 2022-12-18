@@ -1,0 +1,21 @@
+{% extends 'baseadmin.html' %}
+
+{% block content %}
+{{ super()}}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <ul class="list-posts">
+          {% for i in user %}
+          <li>
+            <p class="title"><a href="{{ url_for('showUserSeeAdmin', id_us=i.id_user)}}">{{i.name}}</a></p>
+              <p class="annonce"> Имя: {{ i.name}}</p>
+              <p class="annonce"> Логин: {{ i.login}}</p>
+              <p class="cost"> Почта: {{ i.e_mail}}</p>
+              <p class="cost"> Телефон: {{ i.telephone}}</p>
+              <p><a href="{{ url_for('deleteUser', id_deleteuser=i.id_user )}}">Удалить пользователя</a></p>
+          </li>
+          {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
